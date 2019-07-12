@@ -47,12 +47,9 @@ let tests = [
  	"foo(bar) => foorab", 
  	"(bar) => rab",
  	"foo(foo(bar))blim => foobaroofblim",
-
 	"((bar)) => bar",
  	"foo(bar)blim => foorabblim",
-
 	"foo(foo((bar)))blim => fooraboofblim",
-
 	"foo((baz)foo(bar(bar))) => foorabbaroofbaz",
 	"foo((baz)foo(bar(bar)))blim =>foobarraboofbazblim",
 	"(bar)foo((BAZ)FoO(baz))blim => rabfoobazOoFBAZblim",
@@ -78,28 +75,19 @@ function reverse(input) {
 	for (let i = 0; i < input.length; i++) {
 
 		let c = input.charAt(i);
-	//	console.log('c: ', c);
 
 		switch (c) {
 		case '(':
 
-
 			if (acc.length) {
 				if (stack) {
-	//				console.log('[(]acc: ', acc.join(''));
-	//				console.log('[(]stack before: ', stack0);
 					stack0.push(acc.join(''));
-	//				console.log('[(]stack after: ', stack0);
 				} else {
-	//				console.log('[(]acc: ', acc.join(''));
-	//				console.log('[(]result before: ', result);
 					result.push(acc.join(''));
-	//				console.log('[(]result after: ', result);
 				}
 			}
 
 			stack++;
-//			console.log('[(]level: ', stack);
 
 			switch (state) {
 			case 'reverse':
@@ -116,22 +104,14 @@ function reverse(input) {
 		case ')':
 
 			stack--;
-//			console.log('[)]level: ', stack);
 			
 			if (acc.length) {
 				if (stack) {
-	//				console.log('[)]acc: ', acc.join(''));
-	//				console.log('[)]stack before: ', stack0);
 					stack0.push(acc.join(''));
-	//				console.log('[)]stack after: ', stack0);
 				} else {
-	//				console.log('[)]acc: ', acc.join(''));
-	//				console.log('[)]result before: ', result);
 					result.push(acc.join(''));
-	//				console.log('[)]result after: ', result);
 				}
 			}
-
 
 			switch (state) {
 			case 'reverse':
@@ -159,13 +139,9 @@ function reverse(input) {
 
 	} // eof for
 
-//	console.log('stack: ', stack0);
-
 	if (acc.length) {
 		result.push(acc.join(''));
 	}
-
-//	console.log('result: ', result);
 
 	if (result.length > 1) {
 		let tail = result.pop() || '';
@@ -173,8 +149,6 @@ function reverse(input) {
 	} else {
 		result = result.join('') + stack0.reverse().join('');
 	}
-
-//	console.log('==> ',result); 
 
 	return result;
 
