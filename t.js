@@ -17,12 +17,9 @@ let input = [
 // MONJA - JAMON - MOJAN
 // ESPONJA - JAPONES
 res = input.reduce(function (acc, word) {
-	let key = new Array();
-	for (let i = 0; i < word.length; i++) {
-		key.push(word.charAt(i));
-	}
+	let key = word.split('');
 	key.sort();
-	if (acc[key] != undefined) {
+	if (acc[key]) {
 		acc[key].push(word);
 	} else {
 		acc[key] = new Array();
