@@ -51,7 +51,7 @@ let tests = [
  	"foo(bar)blim => foorabblim",
 	"foo(foo((bar)))blim => fooraboofblim",
 	"foo((baz)foo(bar(bar))) => foorabbaroofbaz",
-	"foo((baz)foo(bar(bar)))blim =>foobarraboofbazblim",
+	"foo((baz)foo(bar(BAR)))blim => fooRABbaroofbazblim",
 	"(bar)foo((BAZ)FoO(baz))blim => rabfoobazOoFBAZblim",
 	"(bar)foo(((BAR)BAZ)FoO(baz(bar)))blim => rabfoorabbazOoFBAZRABblim",
 ]
