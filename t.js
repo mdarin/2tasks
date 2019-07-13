@@ -65,9 +65,9 @@ function reverse(input) {
 
 	let acc = new Array();
 	let result = new Array();
+	let stack = new Array();
 	let state = 'direct';
-	let stack = 0; 
-	let stack0 = new Array();
+	let stacked = 0;
 
 	for (let i = 0; i < input.length; i++) {
 
@@ -77,14 +77,14 @@ function reverse(input) {
 		case '(':
 
 			if (acc.length) {
-				if (stack) {
-					stack0.push(acc.join(''));
+				if (stacked) {
+					stack.unshift(acc.join(''));
 				} else {
 					result.push(acc.join(''));
 				}
 			}
 
-			stack++;
+			stacked++;
 
 			switch (state) {
 			case 'reverse':
@@ -100,11 +100,11 @@ function reverse(input) {
 			break;
 		case ')':
 
-			stack--;
+			stacked--;
 			
 			if (acc.length) {
-				if (stack) {
-					stack0.push(acc.join(''));
+				if (stacked) {
+					stack.unshift(acc.join(''));
 				} else {
 					result.push(acc.join(''));
 				}
@@ -141,10 +141,10 @@ function reverse(input) {
 	}
 
 	if (result.length > 1) {
-		let tail = result.pop() || '';
-		result = result.join('') + stack0.reverse().join('') + tail;
+		let tail = result.pop();
+		result = result.join('') + stack.join('') + tail;
 	} else {
-		result = result.join('') + stack0.reverse().join('');
+		result = result.join('') + stack.join('');
 	}
 
 	return result;
